@@ -116,6 +116,9 @@ async def on_message(message):
             mem = message.author
             await client.remove_roles(mem, dark_role)
             await client.send_message(message.channel, "<@%s> Role removed!!!" % (message.author.id))
+    if message.content.upper().startswith("K!KICK"):
+        args = message.content.split(" ")
+        await client.kick(args[1])
         
 @client.event
 async def on_member_join(member: discord.Member):
