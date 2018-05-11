@@ -116,6 +116,11 @@ async def on_message(message):
             mem = message.author
             await client.remove_roles(mem, dark_role)
             await client.send_message(message.channel, "<@%s> Role removed!!!" % (message.author.id))
+    if message.content.upper().startswith("<@437242484528250881>"):
+        args=message.content.split(" ")
+        if args[1] == "hello":
+            await client.send_message(message.channel, "Hi <@%s> :D" % (message.author.id))
+        
 @client.event
 async def on_member_join(member: discord.Member):
     serverchannel = discord.utils.get(member.server.channels, name="join-leave-messages")
