@@ -10,7 +10,7 @@ client = commands.Bot(command_prefix = "k!")
 
 BotLink = "https://discordapp.com/api/oauth2/authorize?client_id=437242135322951680&permissions=8&scope=bot"
 UserIDS = ["362882906923859968","300868677429886976","407186187443372043"]
-restricted_words = ["FUCK","WTF","SEX"]
+restricted_words = ["FUCK","WTF","SEX","GAY"]
 credits = "Kushurox (you will never find me Xd)\nJackaboi (an awesome dude check out his yt channel:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A"
 @client.event
 async def on_ready():
