@@ -11,6 +11,7 @@ client = commands.Bot(command_prefix = "k!")
 BotLink = "https://discordapp.com/api/oauth2/authorize?client_id=437242135322951680&permissions=8&scope=bot"
 UserIDS = ["362882906923859968","300868677429886976","407186187443372043"]
 restricted_words = ["FUCK","WTF","SEX"]
+credits = "Kushurox (you will never find me Xd)\nJackaboi (an awesome dude check out his yt channel:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A"
 @client.event
 async def on_ready():
     print("KushBot is now Active!")
@@ -116,6 +117,12 @@ async def on_message(message):
             mem = message.author
             await client.remove_roles(mem, dark_role)
             await client.send_message(message.channel, "<@%s> Role removed!!!" % (message.author.id))
+            
+    if message.content.upper().startswith("K!CREDITS"):
+        embc = (discord.Embed(description=credits, colour=0x3DF240))
+        embc.set_author(name="KushBot")
+        await client.send_message(message.channel, embed=embc)
+                             
         
 @client.event
 async def on_member_join(member: discord.Member):
