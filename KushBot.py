@@ -72,6 +72,21 @@ async def on_message(message):
             await client.send_message(message.channel, "<@%s> Such words are not allowed!" % (message.author.id))
             break
     await client.process_commands(message)
+@client.event
+async def on_member_join(member: discord.Member):
+    serverchannel = discord.utils.get(member.server.channels, name="join-leave-messages")
+    role = discord.utils.get(member.server.roles, id="366593681396072448")
+    await client.add_roles(member, role)
+    emb1 = (discord.Embed(description="Yo Welcome to our channel <@%s>\nWant cool ranks please do k!roles" % (member.id), colour=0x3DF270))
+    emb1.set_author(name="KushBot")
+    await client.send_message(serverchannel, embed=emb1)
+@client.event
+async def on_member_remove(member: discord.Member):
+    serverchannel = discord.utils.get(member.server.channels, name="join-leave-messages")
+    meml = member.name
+    embl = (discord.Embed(description= meml+" has left T_T.He/she/it doesn't knows the value of this server", colour=0x3DF170))
+    embl.set_author(name="KushBot")
+    await client.send_message(serverchannel, embed=embl)
 
 
 
