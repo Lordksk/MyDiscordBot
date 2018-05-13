@@ -7,6 +7,7 @@ client = commands.Bot(command_prefix="k!")
 userIDforClr = ["300868677429886976"]
 help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds"
 credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A)"
+restricted_words = ["FUCK","WTF","FUK","GAY"]
 
 @client.event
 async def on_ready():
@@ -61,6 +62,14 @@ async def credits():
     creditsembed = discord.Embed(description=credits_msg, colour=discord.Color.purple())
     creditsembed.set_author(name="Kushbot")
     await client.say(embed=creditsembed)
+@client.event
+async def on_message(message):
+    k = message.content.upper().split(" ")
+    for j in k:
+        if j in restricted_words:
+            await client.delete_message(message)
+            await client.send_message(message.channel, "<@%s> Such words are not allowed!" % (message.author.id))
+            break
 
 
 
