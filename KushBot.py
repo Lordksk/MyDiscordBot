@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+import os
 
 client = commands.Bot(command_prefix="k!")
 
