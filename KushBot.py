@@ -71,6 +71,7 @@ async def on_message(message):
             await client.delete_message(message)
             await client.send_message(message.channel, "<@%s> Such words are not allowed!" % (message.author.id))
             break
+    await client.process_commands(message)
 
 
 
