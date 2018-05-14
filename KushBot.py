@@ -117,6 +117,35 @@ async def timer(ctx, units = "none", amount :int = -1, *, reason = " "):
         await client.send_message(ctx.message.author, "Timer is done get back!\nReason:" + reason)
     else:
         await client.say("Something is wrong")
+@client.command(pass_context=True)
+async def roles(ctx, args = "none"):
+    if args == "none":
+        rembed = discord.Embed(description=roles_msg, colour=discord.Color.dark_gold())
+        rembed.set_author(name="KushBot")
+        await client.say(embed=rembed)
+    elif args.upper() == "PERVERT":
+        try:
+            role = discord.utils.get(ctx.message.server.roles, name="pervert")
+            await client.add_roles(ctx.message.author, role)
+            await client.say("**Role Set**")
+        except:
+            client.say("oops something went wrong")
+    elif args.upper() == "DARK":
+        try:
+            role = discord.utils.get(ctx.message.server.roles, name="dark")
+            await client.add_roles(ctx.message.author, role)
+            await client.say("**Role Set**")
+        except:
+            client.say("OOPS something went wrong")
+    elif args.upper() == "SENPAI":
+        try:
+            role = discord.utils.get(ctx.message.server.roles, name="senpai")
+            await client.add_roles(ctx.message.author, role)
+            await client.say("**Role Set**")
+        except:
+            client.say("OOPS something went wrong")
+    else:
+        client.say("Invalid arguments try k!cmds or k!help")
 
 
 
