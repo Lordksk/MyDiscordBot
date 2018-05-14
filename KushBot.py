@@ -95,7 +95,7 @@ async def on_member_remove(member: discord.Member):
     await client.send_message(serverchannel, embed=embl)
 
 @client.command(pass_context=True)
-async def timer(ctx, units = "none", amount :int = -1, *, reason):
+async def timer(ctx, units = "none", amount :int = -1, *, reason = " "):
     
     if amount == -1:
         await client.say("Invalid Argument try for k!help or k!cmds")
