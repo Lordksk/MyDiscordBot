@@ -38,6 +38,8 @@ async def clr(ctx):
             await client.say("Only numbers!!!")
         except IndexError:
             await client.say("Please Provide a Valid argument (int)")
+        except discord.HTTPException:
+            await client.say("Limit 0 - 100")
 @client.command(pass_context=True)
 async def rps(ctx):
     k = random.randint(0,2)
