@@ -121,8 +121,8 @@ async def timer(ctx):
                 await client.purge_from(ctx.message.channel, limit=2)
         else:
             await client.say("Invalid Arguments try k!cmds for help")
-    except IndexError:
-        await client.say("Bruhh provide an argument if your a confused do k!cmds or k!help")
+    except:
+        await client.say("Bruhh provide a valid argument if your a confused do k!cmds or k!help")
 
 
 
