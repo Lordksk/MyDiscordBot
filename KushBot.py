@@ -91,39 +91,47 @@ async def on_member_remove(member: discord.Member):
     await client.send_message(serverchannel, embed=embl)
 
 @client.command(pass_context=True)
-async def timer(ctx):
+async def timer(ctx, units, amount :int = 0):
     try:
-        channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
-        s_msg = ctx.message.content.upper()
-        args = s_msg.split(" ")
-        if args[1].upper() == "MINS":
-            
-            await asyncio.sleep(int(args[2]) * 60)
-            try:
-                channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
-                for i in range(3):
-                    await client.send_message(channel, "<@{0.message.author.id}> Done".format(ctx))
-            except:
-                for i in range(3):
-                    await client.say("Timer done <@{0.message.author.id}>".format(ctx))
-        elif args[1].upper() == "SEC":
-            
-            await asyncio.sleep(int(args[2]))
-            try:
-                
-                for i in range(3):
-                    await client.send_message(channel, "<@{0.message.author.id}> Done".format(ctx))
-                await asyncio.sleep(3)
-                await client.purge_from(channel, limit=2)
-            except:
-                for i in range(3):
-                    await client.say("Timer done <@{0.message.author.id}>".format(ctx))
-                await asyncio.sleep(3)
-                await client.purge_from(ctx.message.channel, limit=2)
-        else:
-            await client.say("Invalid Arguments try k!cmds for help")
+        tembed = discord.Embed(description="Timer Set <@{0.message.author.id}>".format(ctx), colour=discord.Color.blue())
+        t2embed = discord.Embed(description="Timer done <@{0.message.author.id}>".format(ctx), colour=discord.Colour.blue())
+        tembed.set_author(name="kushbot")
+        t2embed.set_author(name="kusbot")
+        if amount == 0:
+            client.say("Invalid arguments try k!help or k!cmds")
+            return False
+        try:
+            channel = discord.utils.get(ctx.message.server.channels, name="timer")
+            if units.upper() == "MINS":
+                await client.send_message(channel, embed=tembed)
+                await asyncio.sleep(amount * 60)
+                await client.send_message(channel, embed=t2embed)
+                return True
+            elif units.upper() == "SEC":
+                await client.send_message(channel, embed=tembed)
+                await asyncio.sleep(amount)
+                await client.send_message(channel, embed=t2embed)
+                return True
+            elif units.upper() != "SEC" or units.upper() != "MINS":
+                await client.send_message(channel, "Invalid Argument Try k!help or k!cmds")
+                return False
+
+        except:
+            if units.upper() == "MINS":
+                await client.say(embed=tembed)
+                await asyncio.sleep(amount * 60)
+                await client.say(embed=t2embed)
+                return True
+            elif units.upper() == "SEC":
+                await client.say(embed=tembed)
+                await asyncio.sleep(amount)
+                await client.say(embed=t2embed)
+                return True
+            elif units.upper() != "SEC" or units.upper() != "MINS":
+                await client.send_message(channel, "Invalid Argument Try k!help or k!cmds")
+                return False
     except:
-        await client.say("Bruhh provide a valid argument if your a confused do k!cmds or k!help")
+        await client.say("Invalid argument try k!cmds or k!help ")
 
 
 
