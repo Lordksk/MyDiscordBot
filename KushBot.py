@@ -96,7 +96,7 @@ async def timer(ctx):
         s_msg = ctx.message.content.upper()
         args = s_msg.split(" ")
         if args[1].upper() == "MINS":
-            await client.say("<@{0.message.author.id}> Done :wink:".format(ctx))
+            
             await asyncio.sleep(int(args[2]) * 60)
             try:
                 channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
@@ -106,7 +106,7 @@ async def timer(ctx):
                 for i in range(3):
                     await client.say("Timer done <@{0.message.author.id}>".format(ctx))
         elif args[1].upper() == "SEC":
-            await client.say("<@{0.message.author.id}> Done :wink:".format(ctx))
+            
             await asyncio.sleep(int(args[2]))
             try:
                 channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
