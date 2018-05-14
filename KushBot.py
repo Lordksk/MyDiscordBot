@@ -108,11 +108,13 @@ async def timer(ctx, units, amount :int = 0):
                 await client.send_message(channel, embed=tembed)
                 await asyncio.sleep(amount * 60)
                 await client.send_message(channel, embed=t2embed)
+                await client.send_message(channel, "<@%s>" % (ctx.message.author.id))
                 return True
             elif units.upper() == "SEC":
                 await client.send_message(channel, embed=tembed)
                 await asyncio.sleep(amount)
                 await client.send_message(channel, embed=t2embed)
+                await client.send_message(channel, "<@%s>" % (ctx.message.author.id))
                 return True
             elif units.upper() != "SEC" or units.upper() != "MINS":
                 await client.send_message(channel, "Invalid Argument Try k!help or k!cmds")
@@ -123,11 +125,13 @@ async def timer(ctx, units, amount :int = 0):
                 await client.say(embed=tembed)
                 await asyncio.sleep(amount * 60)
                 await client.say(embed=t2embed)
+                await client.say("<@%s>" % (ctx.message.author.id))
                 return True
             elif units.upper() == "SEC":
                 await client.say(embed=tembed)
                 await asyncio.sleep(amount)
                 await client.say(embed=t2embed)
+                await client.say("<@%s>" % (ctx.message.author.id))
                 return True
             elif units.upper() != "SEC" or units.upper() != "MINS":
                 await client.send_message(channel, "Invalid Argument Try k!help or k!cmds")
