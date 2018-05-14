@@ -126,27 +126,36 @@ async def roles(ctx, args = "none"):
     elif args.upper() == "PERVERT":
         try:
             role = discord.utils.get(ctx.message.server.roles, name="pervert")
-            await client.add_roles(ctx.message.author, role)
-            await client.say("**Role Set**")
+            if role not in ctx.message.author.roles:
+                await client.add_roles(ctx.message.author, role)
+                await client.say("**Role Set**")
+            else:
+                await client.remove_roles(ctx.message.author, role)
+                await client.say("**ROLE REMOVED**")
         except:
             client.say("oops something went wrong")
     elif args.upper() == "DARK":
         try:
             role = discord.utils.get(ctx.message.server.roles, name="dark")
-            await client.add_roles(ctx.message.author, role)
-            await client.say("**Role Set**")
+            if role not in ctx.message.author.roles:
+                await client.add_roles(ctx.message.author, role)
+                await client.say("**Role Set**")
+            else:
+                await client.remove_roles(ctx.message.author, role)
+                await client.say("**ROLE REMOVED**")
         except:
-            client.say("OOPS something went wrong")
+            client.say("oops something went wrong")
     elif args.upper() == "SENPAI":
         try:
             role = discord.utils.get(ctx.message.server.roles, name="senpai")
-            await client.add_roles(ctx.message.author, role)
-            await client.say("**Role Set**")
+            if role not in ctx.message.author.roles:
+                await client.add_roles(ctx.message.author, role)
+                await client.say("**Role Set**")
+            else:
+                await client.remove_roles(ctx.message.author, role)
+                await client.say("**ROLE REMOVED**")
         except:
-            client.say("OOPS something went wrong")
-    else:
-        client.say("Invalid arguments try k!cmds or k!help")
-
+            client.say("oops something went wrong")
 
 
 
