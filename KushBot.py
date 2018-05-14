@@ -93,6 +93,7 @@ async def on_member_remove(member: discord.Member):
 @client.command(pass_context=True)
 async def timer(ctx):
     try:
+        channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
         s_msg = ctx.message.content.upper()
         args = s_msg.split(" ")
         if args[1].upper() == "MINS":
@@ -109,7 +110,7 @@ async def timer(ctx):
             
             await asyncio.sleep(int(args[2]))
             try:
-                channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
+                
                 for i in range(3):
                     await client.send_message(channel, "<@{0.message.author.id}> Done".format(ctx))
                 await asyncio.sleep(3)
