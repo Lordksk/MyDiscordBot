@@ -1,3 +1,6 @@
+# Done By the Almighty Kushurox helpers:-
+# 1]Jackaboi
+# I am still working on this
 import discord
 from discord.ext import commands
 import asyncio
@@ -10,8 +13,6 @@ userIDforClr = ["300868677429886976"]
 help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds\ntimer SEC|MINS"
 credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A)"
 restricted_words = ["FUCK","WTF","FUK","GAY","STFU","NAVYA","BOBS","BOB"]
-count = 0
-four = 4 #Bruhh of course
 
 @client.event
 async def on_ready():
@@ -41,7 +42,7 @@ async def clr(ctx):
         except IndexError:
             await client.say("Please Provide a Valid argument (int)")
         except discord.HTTPException:
-            await client.say("Limit 0 - 100")
+            await client.say("ERROR!!!!!!!\nPossibilities:-\n1]Used this command in the wrong place\n2]maybe huge number")
 @client.command(pass_context=True)
 async def rps(ctx):
     k = random.randint(0,2)
