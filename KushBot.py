@@ -13,7 +13,7 @@ userIDforClr = ["300868677429886976"]
 help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds\ntimer SEC|MINS\nroles <role name>[optional argument"
 credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A)"
 restricted_words = ["FUCK","WTF","FUK","GAY","STFU","NAVYA","BOBS","BOB"]
-
+roles_msg = "**ROLES**\npervert\ndark\nsenpai"
 @client.event
 async def on_ready():
     print("{0.user.name} with an id {1.user.id} logged in!".format(client,client))
