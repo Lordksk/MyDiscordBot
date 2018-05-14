@@ -94,6 +94,8 @@ async def on_member_remove(member: discord.Member):
 
 @client.command(pass_context=True)
 async def timer(ctx, units = "none", amount :int = -1, reason = "none"):
+    args = ctx.message.content.split(" ")
+    reason = args[2:]
     if amount == -1:
         await client.say("Invalid Argument try for k!help or k!cmds")
         return False
@@ -111,6 +113,8 @@ async def timer(ctx, units = "none", amount :int = -1, reason = "none"):
         await client.send_message(ctx.message.author, "No worries do your job ill Remind you :wink:\nReason:" + reason)
         await asyncio.sleep(amount)
         await client.send_message(ctx.message.author, "Timer is done get back!\nReason:" + reason)
+    else:
+        await client.say("Something is wrong")
 
 
 
