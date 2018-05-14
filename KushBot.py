@@ -92,39 +92,37 @@ async def on_member_remove(member: discord.Member):
 
 @client.command(pass_context=True)
 async def timer(ctx):
-    channel = discord.utils.get(ctx.message.author.server.channels, name="timer")
-    s_msg = ctx.message.content.upper()
-    args = s_msg.split(" ")
-    if args[1].upper() == "MINS":
-        await client.say("<@{0.message.author.id}> Done :wink:".format(ctx))
-        await asyncio.sleep(int(args[2]) * 60)
-        try:
-            channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
-            for i in range(3):
-                await client.send_message(channel, "<@{0.message.author.id}> Done".format(ctx))
-            await asyncio.sleep(3)
-            await client.purge_from(channel, limit=2)
-        except:
-            for i in range(3):
-                await client.say("Timer done <@{0.message.author.id}>".format(ctx))
-            await asyncio.sleep(3)
-            await client.purge_from(ctx.message.channel, limit=2)
-    elif args[1].upper() == "SEC":
-        await client.say("<@{0.message.author.id}> Done :wink:".format(ctx))
-        await asyncio.sleep(int(args[2]))
-        try:
-            
-            for i in range(3):
-                await client.send_message(channel, "<@{0.message.author.id}> Done".format(ctx))
-            await asyncio.sleep(3)
-            await client.purge_from(channel, limit=2)
-        except:
-            for i in range(3):
-                await client.say("Timer done <@{0.message.author.id}>".format(ctx))
-            await asyncio.sleep(3)
-            await client.purge_from(ctx.message.channel, limit=2)
-    else:
-        await client.say("Invalid Arguments try k!cmds for help or k!help")
+    try:
+        s_msg = ctx.message.content.upper()
+        args = s_msg.split(" ")
+        if args[1].upper() == "MINS":
+            await client.say("<@{0.message.author.id}> Done :wink:".format(ctx))
+            await asyncio.sleep(int(args[2]) * 60)
+            try:
+                channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
+                for i in range(3):
+                    await client.send_message(channel, "<@{0.message.author.id}> Done".format(ctx))
+            except:
+                for i in range(3):
+                    await client.say("Timer done <@{0.message.author.id}>".format(ctx))
+        elif args[1].upper() == "SEC":
+            await client.say("<@{0.message.author.id}> Done :wink:".format(ctx))
+            await asyncio.sleep(int(args[2]))
+            try:
+                channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
+                for i in range(3):
+                    await client.send_message(channel, "<@{0.message.author.id}> Done".format(ctx))
+                await asyncio.sleep(3)
+                await client.purge_from(channel, limit=2)
+            except:
+                for i in range(3):
+                    await client.say("Timer done <@{0.message.author.id}>".format(ctx))
+                await asyncio.sleep(3)
+                await client.purge_from(ctx.message.channel, limit=2)
+        else:
+            await client.say("Invalid Arguments try k!cmds for help")
+    except IndexError:
+        await client.say("Bruhh provide an argument if your a confused do k!cmds or k!help")
 
 
 
