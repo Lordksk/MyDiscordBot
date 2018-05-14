@@ -10,6 +10,9 @@ userIDforClr = ["300868677429886976"]
 help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds\ntimer SEC|MINS"
 credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A)"
 restricted_words = ["FUCK","WTF","FUK","GAY","STFU","NAVYA"]
+count = 0
+four = 4 #Bruhh of course
+reason = ""
 
 @client.event
 async def on_ready():
@@ -95,7 +98,11 @@ async def on_member_remove(member: discord.Member):
 @client.command(pass_context=True)
 async def timer(ctx, units = "none", amount :int = -1):
     args = ctx.message.content.split(" ")
-    reason = args[2:]
+    llen = len(args)
+    tllen = llen - 3
+    while count < tllen:
+        reason = reason + args[three]
+    
     if amount == -1:
         await client.say("Invalid Argument try for k!help or k!cmds")
         return False
