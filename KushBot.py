@@ -12,7 +12,6 @@ credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/chan
 restricted_words = ["FUCK","WTF","FUK","GAY","STFU","NAVYA"]
 count = 0
 four = 4 #Bruhh of course
-reason = ""
 
 @client.event
 async def on_ready():
@@ -100,8 +99,9 @@ async def timer(ctx, units = "none", amount :int = -1):
     args = ctx.message.content.split(" ")
     llen = len(args)
     tllen = llen - 3
+    reason = " "
     while count < tllen:
-        reason = reason + args[three]
+        reason = reason + args[four]
     
     if amount == -1:
         await client.say("Invalid Argument try for k!help or k!cmds")
