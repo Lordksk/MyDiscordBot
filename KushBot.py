@@ -108,7 +108,7 @@ async def timer(ctx):
         await client.say("<@{0.message.author.id}> Done :wink:".format(ctx))
         await asyncio.sleep(int(args[2]))
         try:
-            channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
+            channel = discord.utils.get(ctx.message.author.server.channels, name="timer")
             for i in range(3):
                 await client.send_message(channel, "<@{0.message.author.id}> Done".format(ctx))
             await asyncio.sleep(3)
