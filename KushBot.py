@@ -13,6 +13,7 @@ restricted_words = ["FUCK","WTF","FUK","GAY"]
 @client.event
 async def on_ready():
     print("{0.user.name} with an id {1.user.id} logged in!".format(client,client))
+    await client.change_presence(game=discord.Game(name="with my k!help"))
 @client.command()
 async def toss():
     k = random.randint(0,1)
