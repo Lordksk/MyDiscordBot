@@ -8,7 +8,7 @@ client = commands.Bot(command_prefix="k!")
 userIDforClr = ["300868677429886976"]
 help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds"
 credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A)"
-restricted_words = ["FUCK","WTF","FUK","GAY"]
+restricted_words = ["FUCK","WTF","FUK","GAY","STFU"]
 
 @client.event
 async def on_ready():
@@ -88,6 +88,37 @@ async def on_member_remove(member: discord.Member):
     embl = (discord.Embed(description= meml+" has left T_T.He/she/it doesn't knows the value of this server", colour=0x3DF170))
     embl.set_author(name="KushBot")
     await client.send_message(serverchannel, embed=embl)
+
+@client.command(pass_context=True)
+async def timer(ctx):
+    s_msg = ctx.message.content.upper()
+    args = s_msg.split(" ")
+    if args[1].upper() == "MINS":
+        await client.say("<@{0.message.author.id}> Done :wink:".format(ctx))
+        await asyncio.sleep(int(args[2]) * 60)
+        try:
+            channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
+            for i in range(3):
+                await client.send_message(channel, "<@{0.message.author.id}> Done".format(ctx))
+        except:
+            for i in range(3):
+                await client.say("Timer done <@{0.message.author.id}>".format(ctx))
+    elif args[1].upper() == "SEC":
+        await client.say("<@{0.message.author.id}> Done :wink:".format(ctx))
+        await asyncio.sleep(int(args[2]))
+        try:
+            channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
+            for i in range(3):
+                await client.send_message(channel, "<@{0.message.author.id}> Done".format(ctx))
+            await asyncio.sleep(3)
+            await client.purge_from(channel, limit=2)
+        except:
+            for i in range(3):
+                await client.say("Timer done <@{0.message.author.id}>".format(ctx))
+            await asyncio.sleep(3)
+            await client.purge_from(ctx.message.channel, limit=2)
+    else:
+        await client.say("Invalid Arguments try k!cmds for help")
 
 
 
