@@ -97,16 +97,16 @@ async def timer(ctx, units = "none", amount :int = -1, reason = "none"):
     if amount == -1:
         await client.say("Invalid Argument try for k!help or k!cmds")
         return False
-    if amount == 0:
+    elif amount == 0:
         await client.send_message(ctx.message.author, "Are you a fool????")
         return False
-    if units == "none":
+    elif units == "none":
         await client.send_message(ctx.message.channel, "Invalid Argument try k!help or k!cmds")
         return False
-    if units != "none" or units.upper() != "MINS" or units.upper() != "SEC":
+    elif units != "none" or units.upper() != "MINS" or units.upper() != "SEC":
         await client.say("Invalid arguments try k!help or k!cmds")
         return False
-    if units.upper() == "MINS":
+    elif units.upper() == "MINS":
         await client.send_message(ctx.message.author, "No worries do your job ill Remind you :wink:\nReason:" + reason)
         await asyncio.sleep(amount * 60)
         await client.send_message(ctx.message.author, "Timer is done get back!\nReason:" + reason)
@@ -121,5 +121,6 @@ async def timer(ctx, units = "none", amount :int = -1, reason = "none"):
 
 
 
+        
 
 client.run(os.getenv('TOKEN'))
