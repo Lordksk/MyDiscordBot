@@ -101,9 +101,13 @@ async def timer(ctx):
             channel = discord.utils.get(ctx.message.author.server.channels, name="Timer")
             for i in range(3):
                 await client.send_message(channel, "<@{0.message.author.id}> Done".format(ctx))
+            await asyncio.sleep(3)
+            await client.purge_from(channel, limit=2)
         except:
             for i in range(3):
                 await client.say("Timer done <@{0.message.author.id}>".format(ctx))
+            await asyncio.sleep(3)
+            await client.purge_from(ctx.message.channel, limit=2)
     elif args[1].upper() == "SEC":
         await client.say("<@{0.message.author.id}> Done :wink:".format(ctx))
         await asyncio.sleep(int(args[2]))
