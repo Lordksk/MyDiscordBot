@@ -93,51 +93,27 @@ async def on_member_remove(member: discord.Member):
     await client.send_message(serverchannel, embed=embl)
 
 @client.command(pass_context=True)
-async def timer(ctx, units, amount :int = 0):
-    try:
-        tembed = discord.Embed(description="Timer Set <@{0.message.author.id}>".format(ctx), colour=discord.Color.blue())
-        t2embed = discord.Embed(description="Timer done <@{0.message.author.id}>".format(ctx), colour=discord.Colour.blue())
-        tembed.set_author(name="kushbot")
-        t2embed.set_author(name="kusbot")
-        if amount == 0:
-            client.say("Invalid arguments try k!help or k!cmds")
-            return False
-        try:
-            channel = discord.utils.get(ctx.message.server.channels, name="timer")
-            if units.upper() == "MINS":
-                await client.send_message(channel, embed=tembed)
-                await asyncio.sleep(amount * 60)
-                await client.send_message(channel, embed=t2embed)
-                await client.send_message(channel, "<@%s>" % (ctx.message.author.id))
-                return True
-            elif units.upper() == "SEC":
-                await client.send_message(channel, embed=tembed)
-                await asyncio.sleep(amount)
-                await client.send_message(channel, embed=t2embed)
-                await client.send_message(channel, "<@%s>" % (ctx.message.author.id))
-                return True
-            elif units.upper() != "SEC" or units.upper() != "MINS":
-                await client.send_message(channel, "Invalid Argument Try k!help or k!cmds")
-                return False
-
-        except:
-            if units.upper() == "MINS":
-                await client.say(embed=tembed)
-                await asyncio.sleep(amount * 60)
-                await client.say(embed=t2embed)
-                await client.say("<@%s>" % (ctx.message.author.id))
-                return True
-            elif units.upper() == "SEC":
-                await client.say(embed=tembed)
-                await asyncio.sleep(amount)
-                await client.say(embed=t2embed)
-                await client.say("<@%s>" % (ctx.message.author.id))
-                return True
-            elif units.upper() != "SEC" or units.upper() != "MINS":
-                await client.send_message(channel, "Invalid Argument Try k!help or k!cmds")
-                return False
-    except:
-        await client.say("Invalid argument try k!cmds or k!help ")
+async def timer(ctx, units = "none", amount :int = -1, reason = "none"):
+    if amount == -1:
+        await client.say("Invalid Argument try for k!help or k!cmds")
+        return False
+    if amount == 0:
+        await client.send_message(ctx.message.author, "Are you a fool????")
+        return False
+    if units == "none":
+        await client.send_message(ctx.message.channel, "Invalid Argument try k!help or k!cmds")
+        return False
+    if units != "none" or units.upper() != "MINS" or units.upper() != "SEC":
+        await client.say("Invalid arguments try k!help or k!cmds")
+        return False
+    if units.upper() == "MINS":
+        await client.send_message(ctx.message.author, "No worries do your job ill Remind you :wink:\nReason:" + reason)
+        await asyncio.sleep(amount * 60)
+        await client.send_message(ctx.message.author, "Timer is done get back!\nReason:" + reason)
+    elif units.upper() == "SEC":
+        await client.send_message(ctx.message.author, "No worries do your job ill Remind you :wink:\nReason:" + reason)
+        await asyncio.sleep(amount)
+        await client.send_message(ctx.message.author, "Timer is done get back!\nReason:" + reason)
 
 
 
