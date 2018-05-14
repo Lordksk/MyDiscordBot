@@ -14,7 +14,7 @@ restricted_words = ["FUCK","WTF","FUK","GAY","STFU"]
 @client.event
 async def on_ready():
     print("{0.user.name} with an id {1.user.id} logged in!".format(client,client))
-    await client.change_presence(game=discord.Game(name="with my k!help"))
+    await client.change_presence(game=discord.Game(name="with my k!cmds"))
 @client.command()
 async def toss():
     k = random.randint(0,1)
@@ -119,7 +119,7 @@ async def timer(ctx):
             await asyncio.sleep(3)
             await client.purge_from(ctx.message.channel, limit=2)
     else:
-        await client.say("Invalid Arguments try k!cmds for help")
+        await client.say("Invalid Arguments try k!cmds for help or k!help")
 
 
 
