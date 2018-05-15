@@ -145,6 +145,19 @@ async def roles(ctx, rolename = "none"):
             await client.say("**Role Removed**")
     else:
         await client.say("Role not exisitng you can add the role by doing k!addrole <rolename>")
+@client.command(pass_context=True)
+async def addrole(ctx, *,rolename="none"):
+    if rolename == "none":
+        await client.say("Please provide an argument")
+    elif rolename in roles_list:
+        await client.say("Role already existing")
+    else:
+        try:
+            await client.create_role(ctx.message.server, name=rolename)
+            roles_list.append(rolename)
+            await client.say("Role Created")
+        except:
+            await client.say("I dont have the perms to do that")
         
 
 
