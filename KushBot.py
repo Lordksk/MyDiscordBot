@@ -146,6 +146,16 @@ async def roles(ctx, rolename = "none"):
             await client.say("**Role Removed**")
     else:
         await client.say("Role not exisitng.")
+@client.command(pass_context=True)
+async def kick(ctx, name : discord.Member = "none"):
+    try:
+        if name == "none":
+            await client.say("Who the fish should i kick?")
+            return False
+        await client.kick(name)
+        await client.say("Kicked his ass :wink:")
+    except discord.Forbidden:
+        await client.say("I lack perms bruhh")
 
         
 
