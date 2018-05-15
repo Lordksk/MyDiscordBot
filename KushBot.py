@@ -9,11 +9,14 @@ import os
 
 client = commands.Bot(command_prefix="k!")
 
+count = 0
 userIDforClr = ["300868677429886976"]
 help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds\ntimer SEC|MINS\nroles <role name>[optional argument]\naddrole <rolename>"
 credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A)"
-restricted_words = ["FUCK","WTF","FUK","GAY","STFU","NAVYA","BOBS","BOB"]
-roles_msg = "**ROLES**\npervert\ndark\nsenpai\n\n***NOTE:Please add the roles in the server roles before using these***"
+restricted_words = ["FUCK","WTF","FUK","GAY","STFU"]
+roles_append = [""]
+roles_displayed = roles_displayed + '\n' + roles_append[count]
+roles_msg = "**ROLES**\n{}\n\n***NOTE:Please add the roles in the server roles before using these***".format(roles_displayed)
 roles_list = []
 @client.event
 async def on_ready():
@@ -155,6 +158,8 @@ async def addrole(ctx, *,rolename="none"):
         try:
             await client.create_role(ctx.message.server, name=rolename)
             roles_list.append(rolename)
+            roles_append.append(rolename)
+            count+=1
             await client.say("Role Created")
         except:
             await client.say("I dont have the perms to do that")
