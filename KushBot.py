@@ -15,6 +15,7 @@ help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds\ntimer SEC|MINS\nro
 credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A)"
 restricted_words = ["FUCK","WTF","FUK","GAY","STFU"]
 roles_append = [""]
+roles_displayed = ""
 roles_displayed = roles_displayed + '\n' + roles_append[count]
 roles_msg = "**ROLES**\n{}\n\n***NOTE:Please add the roles in the server roles before using these***".format(roles_displayed)
 roles_list = []
