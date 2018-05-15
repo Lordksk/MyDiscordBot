@@ -156,6 +156,17 @@ async def kick(ctx, name : discord.Member = "none"):
         await client.say("Kicked his ass :wink:")
     except discord.Forbidden:
         await client.say("I lack perms bruhh")
+@client.command(pass_context=True)
+async def mute(ctx, member : discord.Member = None):
+    try:
+        if member == None:
+            await client.say("Who the fish should i mute?")
+            return False
+        m_role = discord.utils.get(ctx.message.server.roles, name="Muted")
+        await client.add_roles(member, m_role)
+        await client.say("Shut the hell {0.name}".format(member))
+    except discord.Forbidden:
+        await client.say("I lack perms bruhh")
 
         
 
