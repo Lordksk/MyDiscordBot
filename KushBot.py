@@ -11,7 +11,7 @@ client = commands.Bot(command_prefix="k!")
 
 count = 0
 userIDforClr = ["300868677429886976"]
-help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds\ntimer SEC|MINS\nroles <role name>[optional argument]\naddrole <rolename>"
+help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds\ntimer SEC|MINS\nroles <role name>[optional argument]\nkick\nmute\nunmute"
 credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A)"
 restricted_words = ["FUCK","WTF","FUK","GAY","STFU"]
 roles_msg = "**ROLES**\npervert\ndark\nsenpai\n\n***NOTE:Please add the roles in the server roles before using these***"
@@ -170,6 +170,17 @@ async def mute(ctx, member : discord.Member = None):
         m_role = discord.utils.get(ctx.message.server.roles, name="Muted")
         await client.add_roles(member, m_role)
         await client.say("Shut the hell {0.name}".format(member))
+    except discord.Forbidden:
+        await client.say("I lack perms bruhh")
+@client.command(pass_context=True)
+async def unmute(ctx, member : discord.Member = None):
+    try:
+        if member == None:
+            await client.say("Who the fish should i mute?")
+            return False
+        m_role = discord.utils.get(ctx.message.server.roles, name="Muted")
+        await client.remove_roles(member, m_role)
+        await client.say("fine fine you can talk... {0.name}".format(member))
     except discord.Forbidden:
         await client.say("I lack perms bruhh")
 
