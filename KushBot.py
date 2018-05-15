@@ -101,12 +101,17 @@ async def on_member_join(member: discord.Member):
         await client.send_message(serverchannel, embed=emb1)
 @client.event
 async def on_member_remove(member: discord.Member):
-    serverchannel = discord.utils.get(member.server.channels, name="join-leave-messages")
-    meml = member.name
-    embl = (discord.Embed(description= meml+" has left T_T.He/she/it doesn't knows the value of this server", colour=0x3DF170))
-    embl.set_author(name="KushBot")
-    await client.send_message(serverchannel, embed=embl)
-
+    try:
+        serverchannel = discord.utils.get(member.server.channels, name="join-leave-messages")
+        meml = member.name
+        embl = (discord.Embed(description= meml+" has left T_T.He/she/it doesn't knows the value of this server", colour=0x3DF170))
+        embl.set_author(name="KushBot")
+        await client.send_message(serverchannel, embed=embl)
+    except:
+        meml = member.name
+        embl = (discord.Embed(description= meml+" has left T_T.He/she/it doesn't knows the value of this server", colour=0x3DF170))
+        embl.set_author(name="KushBot")
+        await client.say(embed=embl)
 @client.command(pass_context=True)
 async def timer(ctx, units = "none", amount :int = -1, *, reason = " "):
     
