@@ -83,13 +83,20 @@ async def on_message(message):
 async def on_member_join(member: discord.Member):
     try:
         serverchannel = discord.utils.get(member.server.channels, name="join-leave-messages")
-        role = discord.utils.get(member.server.roles, id="366593681396072448")
+        role = discord.utils.get(member.server.roles, id="member")
         await client.add_roles(member, role)
         emb1 = (discord.Embed(description="Yo Welcome to our channel <@%s>\nWant cool ranks please do k!roles" % (member.id), colour=0x3DF270))
         emb1.set_author(name="KushBot")
         await client.send_message(serverchannel, embed=emb1)
+    except discord.Forbidden:
+        serverchannel = discord.utils.get(member.server.channels, name="join-leave-messages")
+        emb1 = (discord.Embed(description="Yo Welcome to our channel <@%s>\nWant cool ranks please do k!roles" % (member.id), colour=0x3DF270))
+        emb1.set_author(name="KushBot")
+        await client.send_message(member.channel, embed=emb1)
     except:
-        print("Missing permissions to set role")
+        emb1 = (discord.Embed(description="Yo Welcome to our channel <@%s>\nWant cool ranks please do k!roles" % (member.id), colour=0x3DF270))
+        emb1.set_author(name="KushBot")
+        await client.send_message(serverchannel, embed=emb1)
 @client.event
 async def on_member_remove(member: discord.Member):
     serverchannel = discord.utils.get(member.server.channels, name="join-leave-messages")
