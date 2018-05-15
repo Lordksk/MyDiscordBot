@@ -14,6 +14,7 @@ help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds\ntimer SEC|MINS\nro
 credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A)"
 restricted_words = ["FUCK","WTF","FUK","GAY","STFU","NAVYA","BOBS","BOB"]
 roles_msg = "**ROLES**\npervert\ndark\nsenpai\n\n***NOTE:Please add the roles in the server roles before using these***"
+roles_list = ["pervert","dark","senpai"]
 @client.event
 async def on_ready():
     print("{0.user.name} with an id {1.user.id} logged in!".format(client,client))
@@ -128,46 +129,18 @@ async def timer(ctx, units = "none", amount :int = -1, *, reason = " "):
     else:
         await client.say("Something is wrong")
 @client.command(pass_context=True)
-async def roles(ctx, args = "none"):
-    if args == "none":
+async def roles(ctx, rolename = "none"):
+    print(rolename)
+    if rolename == "none":
         rembed = discord.Embed(description=roles_msg, colour=discord.Color.dark_gold())
         rembed.set_author(name="KushBot")
         await client.say(embed=rembed)
-    elif args.upper() == "PERVERT":
-        try:
-            role = discord.utils.get(ctx.message.server.roles, name="pervert")
-            if role not in ctx.message.author.roles:
-                await client.add_roles(ctx.message.author, role)
-                await client.say("**Role Set**")
-            else:
-                await client.remove_roles(ctx.message.author, role)
-                await client.say("**ROLE REMOVED**")
-        except:
-            await client.say("Please Add the role before using it")
-    elif args.upper() == "DARK":
-        try:
-            role = discord.utils.get(ctx.message.server.roles, name="dark")
-            if role not in ctx.message.author.roles:
-                await client.add_roles(ctx.message.author, role)
-                await client.say("**Role Set**")
-            else:
-                await client.remove_roles(ctx.message.author, role)
-                await client.say("**ROLE REMOVED**")
-        except:
-            await client.say("please add the role before using it")
-    elif args.upper() == "SENPAI":
-        try:
-            role = discord.utils.get(ctx.message.server.roles, name="senpai")
-            if role not in ctx.message.author.roles:
-                await client.add_roles(ctx.message.author, role)
-                await client.say("**Role Set**")
-            else:
-                await client.remove_roles(ctx.message.author, role)
-                await client.say("**ROLE REMOVED**")
-        except:
-            await client.say("please add the role before using it")
+    elif rolename in roles_list:
+        role = discord.utils.get(ctx.message.server.roles, name=rolename)
+        await client.add_roles(ctx.message.author, role)
+        await client.say("Role set")
     else:
-        await client.say("Wrong Format try k!help or k!cmds")
+        await client.say("Role not exisitng you can add the role by doing k!addrole <rolename>")
         
 
 
