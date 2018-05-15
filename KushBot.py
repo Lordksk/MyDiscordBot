@@ -14,10 +14,7 @@ userIDforClr = ["300868677429886976"]
 help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds\ntimer SEC|MINS\nroles <role name>[optional argument]\naddrole <rolename>"
 credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A)"
 restricted_words = ["FUCK","WTF","FUK","GAY","STFU"]
-roles_append = [""]
-roles_displayed = ""
-roles_displayed = roles_displayed + '\n' + roles_append[count]
-roles_msg = "**ROLES**\n{}\n\n***NOTE:Please add the roles in the server roles before using these***".format(roles_displayed)
+roles_msg = "**ROLES**\npervert\ndark\nsenpai\n\n***NOTE:Please add the roles in the server roles before using these***"
 roles_list = []
 @client.event
 async def on_ready():
@@ -148,22 +145,8 @@ async def roles(ctx, rolename = "none"):
             await client.remove_roles(ctx.message.author, role)
             await client.say("**Role Removed**")
     else:
-        await client.say("Role not exisitng you can add the role by doing k!addrole <rolename>")
-@client.command(pass_context=True)
-async def addrole(ctx, *,rolename="none"):
-    if rolename == "none":
-        await client.say("Please provide an argument")
-    elif rolename in roles_list:
-        await client.say("Role already existing")
-    else:
-        try:
-            await client.create_role(ctx.message.server, name=rolename)
-            roles_list.append(rolename)
-            roles_append.append(rolename)
-            count+=1
-            await client.say("Role Created")
-        except:
-            await client.say("I dont have the perms to do that")
+        await client.say("Role not exisitng.")
+
         
 
 
