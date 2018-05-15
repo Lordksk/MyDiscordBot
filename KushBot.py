@@ -143,7 +143,7 @@ async def roles(ctx, args = "none"):
                 await client.remove_roles(ctx.message.author, role)
                 await client.say("**ROLE REMOVED**")
         except:
-            client.say("oops something went wrong")
+            await client.say("Please Add the role before using it")
     elif args.upper() == "DARK":
         try:
             role = discord.utils.get(ctx.message.server.roles, name="dark")
@@ -154,7 +154,7 @@ async def roles(ctx, args = "none"):
                 await client.remove_roles(ctx.message.author, role)
                 await client.say("**ROLE REMOVED**")
         except:
-            client.say("oops something went wrong")
+            await client.say("please add the role before using it")
     elif args.upper() == "SENPAI":
         try:
             role = discord.utils.get(ctx.message.server.roles, name="senpai")
@@ -165,7 +165,7 @@ async def roles(ctx, args = "none"):
                 await client.remove_roles(ctx.message.author, role)
                 await client.say("**ROLE REMOVED**")
         except:
-            client.say("oops something went wrong")
+            await client.say("please add the role before using it")
     else:
         await client.say("Wrong Format try k!help or k!cmds")
         
