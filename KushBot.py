@@ -130,15 +130,19 @@ async def timer(ctx, units = "none", amount :int = -1, *, reason = " "):
         await client.say("Something is wrong")
 @client.command(pass_context=True)
 async def roles(ctx, rolename = "none"):
-    print(rolename)
     if rolename == "none":
         rembed = discord.Embed(description=roles_msg, colour=discord.Color.dark_gold())
         rembed.set_author(name="KushBot")
         await client.say(embed=rembed)
     elif rolename in roles_list:
-        role = discord.utils.get(ctx.message.server.roles, name=rolename)
-        await client.add_roles(ctx.message.author, role)
-        await client.say("Role set")
+        if rolename not in ctx.message.author.roles:
+            role = discord.utils.get(ctx.message.server.roles, name=rolename)
+            await client.add_roles(ctx.message.author, role)
+            await client.say("**Role set**")
+        else:
+            role = discord.utils.get(ctx.message.server.roles, name=rolename)
+            await client.remove_roles(ctx.message.author, role)
+            await client.say("**Role Removed**")
     else:
         await client.say("Role not exisitng you can add the role by doing k!addrole <rolename>")
         
