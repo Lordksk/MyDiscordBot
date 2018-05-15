@@ -156,6 +156,9 @@ async def roles(ctx, args = "none"):
                 await client.say("**ROLE REMOVED**")
         except:
             client.say("oops something went wrong")
+    else:
+        await client.say("Wrong Format try k!help or k!cmds")
+        
 
 
 
