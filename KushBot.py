@@ -162,16 +162,22 @@ async def kick(ctx, name : discord.Member = "none"):
     except discord.Forbidden:
         await client.say("I lack perms bruhh")
 @client.command(pass_context=True)
+@commands.has_permissions(administrator=True)
 async def mute(ctx, member : discord.Member = None):
-    try:
-        if member == None:
-            await client.say("Who the fish should i mute?")
-            return False
-        m_role = discord.utils.get(ctx.message.server.roles, name="Muted")
-        await client.add_roles(member, m_role)
-        await client.say("Shut the hell {0.name}".format(member))
-    except discord.Forbidden:
-        await client.say("I lack perms bruhh")
+    if member != None:
+        try:
+            role = discord.utils.get(ctx.message.server.roles, name="Muted")
+            if role not in member.roles:
+                await client.add_roles(member, role)
+                await client.say("**Shut up {0.name}**".format(member))
+            else:
+                await client.say("He is already muted!")
+        except discord.Forbidden:
+            await client.say("I dont have permissions :(")
+        except:
+            await client.say("Role not exisitng do you want me to create it???")
+    else:
+        await client.say("Please provide an argument")
 @client.command(pass_context=True)
 async def unmute(ctx, member : discord.Member = None):
     try:
