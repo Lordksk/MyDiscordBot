@@ -179,6 +179,7 @@ async def mute(ctx, member : discord.Member = None):
     else:
         await client.say("Please provide an argument")
 @client.command(pass_context=True)
+@commands.has_permissions(administrator=True)
 async def unmute(ctx, member : discord.Member = None):
     try:
         if member == None:
@@ -189,6 +190,8 @@ async def unmute(ctx, member : discord.Member = None):
         await client.say("fine fine you can talk... {0.name}".format(member))
     except discord.Forbidden:
         await client.say("I lack perms bruhh")
+    except:
+        await client.say("Role not Existing")
 
         
 
