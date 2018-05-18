@@ -162,6 +162,8 @@ async def kick(ctx, name : discord.Member = "none"):
         await client.say("Kicked his ass :wink:")
     except discord.Forbidden:
         await client.say("I lack perms bruhh")
+    except:
+        await client.say("User not existing")
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
 async def mute(ctx, member : discord.Member = None):
