@@ -10,7 +10,6 @@ import os
 client = commands.Bot(command_prefix="k!")
 
 count = 0
-userIDforClr = ["300868677429886976"]
 help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds\ntimer SEC|MINS\nroles <role name>[optional argument]\nkick\nmute\nunmute"
 credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A)"
 restricted_words = ["FUCK","WTF","FUK","GAY","STFU"]
@@ -29,22 +28,23 @@ async def toss():
         await client.say("Tails")
 
 @client.command(pass_context=True)
-async def clr(ctx):
-    if ctx.message.author.id not in userIDforClr:
-        warningembed = discord.Embed(description="You Dont Have The Perms!!!", colour=discord.Color.red())
-        warningembed.set_author(name="kushBot")
-        await client.say(embed=warningembed)
-    else:
-        try:
-            args = ctx.message.content.split(" ")
-            number = int(args[1])
-            await client.purge_from(ctx.message.channel, limit=number)
-        except ValueError:
-            await client.say("Only numbers!!!")
-        except IndexError:
-            await client.say("Please Provide a Valid argument (int)")
-        except discord.HTTPException:
-            await client.say("ERROR!!!!!!!\nPossibilities:-\n1]Used this command in the wrong place\n2]maybe huge number")
+@commands.has_permissions(administrator=True)
+async def clr(ctx, amount="0"):
+    try:
+        args = int(amount)
+        if args == 0:
+            await client.say("Please provide a valid argument")
+            return False
+        elif args < 0:
+            await client.say("Please provide an positive integer")
+            return False
+        else:
+            await client.purge_from(ctx.message.channel, limit=args)
+            return True
+    except ValueError:
+        await client.say("Please provide numbers only")
+    except discord.HTTPException:
+        await client.say("bad request please provide small numbers to prevent such issues")
 @client.command(pass_context=True)
 async def rps(ctx):
     k = random.randint(0,2)
