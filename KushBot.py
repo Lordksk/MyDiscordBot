@@ -152,6 +152,7 @@ async def roles(ctx, rolename = "none"):
     else:
         await client.say("Role not exisitng.")
 @client.command(pass_context=True)
+@commands.has_permissions(administrator=True)
 async def kick(ctx, name : discord.Member = "none"):
     try:
         if name == "none":
