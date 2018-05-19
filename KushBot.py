@@ -10,7 +10,7 @@ import os
 client = commands.Bot(command_prefix="k!")
 
 count = 0
-help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds\ntimer SEC|MINS\nroles <role name>[optional argument]\nkick\nmute\nunmute"
+help_msg = "Toss\nClr\nrps rock|paper|scissor\ncredits\ncmds\ntimer SEC|MINS\nroles <role name>[optional argument]\nkick\nmute [member] [time OPTIONAL]\nunmute [member]"
 credits_msg= "Kushurox aka Kushal\nJackaboi (his yt:https://www.youtube.com/channel/UCNp8BvJDLjsxFwl97FgDX7A)"
 restricted_words = ["FUCK","WTF","FUK","GAY","STFU"]
 roles_msg = "**ROLES**\npervert\ndark\nsenpai\n\n***NOTE:Please add the roles in the server roles before using these***"
@@ -166,21 +166,42 @@ async def kick(ctx, name : discord.Member = "none"):
         await client.say("User not existing")
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-async def mute(ctx, member : discord.Member = None):
-    if member != None:
-        try:
-            role = discord.utils.get(ctx.message.server.roles, name="Muted")
-            if role not in member.roles:
+async def mute(ctx, member : discord.Member = None, minutes = "0"):
+    try:
+        time = int(minutes)
+        if member != None and time == "0":
+            try:
+                role= discord.utils.get(ctx.message.server.roles, name="Muted")
                 await client.add_roles(member, role)
-                await client.say("**Shut up {0.name}**".format(member))
-            else:
-                await client.say("He is already muted!")
-        except discord.Forbidden:
-            await client.say("I dont have permissions :(")
-        except:
-            await client.say("Role not exisitng do you want me to create it???")
-    else:
-        await client.say("Please provide an argument")
+                emb1 = discord.Embed(description="Shut up {0.name} you have been muted\nduration:∞".format(member), colour=discord.Color.blue())
+                emb1.set_author(name="KushBot")
+                await client.say(embed=emb1)
+            except discord.Forbidden:
+                await client.say("I dont have permissions ;(")
+            except:
+                await client.say("Role not existing please create one")
+        elif member != None and time != "0":
+            try:
+                role = discord.utils.get(ctx.message.server.roles, name="Muted")
+                await client.add_roles(member, role)
+                emb1 = discord.Embed(description="Shut up {0.name} you have been muted\nduration:{1} min".format(member,time),colour=discord.Color.blue())
+                emb1.set_author(name="KushBot")
+                await client.say(embed=emb1)
+                await asyncio.sleep(time * 60)
+                await client.remove_roles(member, role)
+                await client.say("You have been unmuted <@{0.id}>".format(member))
+            except discord.Forbidden:
+                await client.say("I lack perms ;(")
+            except:
+                await client.say("Role Not existing please create one")
+        elif member != None and time < 0:
+            await client.say("Provide a positive integer")
+            return False
+        else:
+            await client.say("Invalid Arguments please try k!cmds")
+            return False
+    except:
+        await client.say("Invalid Arguments try k!cmds")
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
 async def unmute(ctx, member : discord.Member = None):
