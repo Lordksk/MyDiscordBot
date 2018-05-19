@@ -169,7 +169,7 @@ async def kick(ctx, name : discord.Member = "none"):
 async def mute(ctx, member : discord.Member = None, minutes = "0"):
     try:
         time = int(minutes)
-        if member != None and time == "0":
+        if member != None and time == 0:
             try:
                 role= discord.utils.get(ctx.message.server.roles, name="Muted")
                 await client.add_roles(member, role)
@@ -180,7 +180,7 @@ async def mute(ctx, member : discord.Member = None, minutes = "0"):
                 await client.say("I dont have permissions ;(")
             except:
                 await client.say("Role not existing please create one")
-        elif member != None and time != "0":
+        elif member != None and time != 0:
             try:
                 role = discord.utils.get(ctx.message.server.roles, name="Muted")
                 await client.add_roles(member, role)
